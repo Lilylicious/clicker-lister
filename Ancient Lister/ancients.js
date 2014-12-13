@@ -43,15 +43,24 @@ var heroes = [
   {name: "Astraea", cost: 1e160, damage: 1.268e135 * 20, level: 0, has5x: true, upgrades: [1e161, 2.5e161, 1e162, 0, 8e162]}
 ];
 
-
+//Misc
 var count = 0;
 var soulsSpent = 0;
 
+//Lists
 var ancientList = "Ancients: ";
 var heroList = "Gilded heroes: ";
 var miscList = "Misc Info: ";
+var timeList = "";
 
+//Time
+var currentTime;
+var creationTime;
+var prevLoginTime;
+var startTime;
+var timeSinceCreation;
 
+//Elements
 var input = document.getElementById('input');
 var output = document.getElementById('output');
 var decodeButton = document.getElementById('decodeButton');
@@ -79,18 +88,56 @@ function readHeroes(data){
     });
 }
 
-function readTime(time){
-	microSecTime = time/2;
-	daysTime = microSecTime/86400000000;
+function readTime(data){
+	timeList = "";
+	
+	creationTime = data.creationTimestamp;
+	prevLoginTime = data.prevLoginTimestamp;
+	startTime = data.startTimestamp;
+	currentTime = new Date().getTime();
+	timeSinceCreation = +currentTime - +creationTime;
+	timeSinceAscension = +currentTime - +startTime;
+	
+	
+		//Adding time to array
+	
+	var timeHolder = 'Time since start: ' +formatTime(timeSinceCreation) + ', Time since ascension: ' + formatTime(timeSinceAscension) + ', ';
+	timeList += timeHolder;
+}
 
+function msTo(time,target){
+	if(target=="seconds")return time/1000;
+	if(target=="minutes")return time/1000/60;
+	if(target=="hours")return time/1000/60/60;
+	if(target=="days")return time/1000/60/60/24;
+	else return "Invalid target";
+}
+
+function formatTime(time){
+	// Time coverted to seconds, doesn't need to be more accurate.
+	time /= 1000;
+	var days = time/(24*60*60);
+	var hours = (time/(60*60))%24;
+	var minutes = (time/60)%60; 
+	var seconds = time%60;
+	// Floor it all, removing remainders
+	days = Math.floor(days);
+	hours = Math.floor(hours);
+	minutes = Math.floor(minutes);
+	seconds = Math.floor(seconds);
+	
+	// Return string of time.
+	return days + ' days, ' + hours + ' hours, ' + minutes + ' minutes, ' + seconds + ' seconds';
 }
 
 function readMisc(data){
 	miscList = "";
 	var totalSouls = +data.heroSouls + +soulsSpent;
-	var miscHolder = 'Hero Souls: ' + data.heroSouls +  ', Souls spent on Ancients: ' + soulsSpent + ', Total Souls: ' + totalSouls + ', Highest zone: ' + data.highestFinishedZonePersist + ', Current zone: ' + data.currentZoneHeight + ', Ascensions: ' + data.numWorldResets + ',';
+	var miscHolder = 'Hero Souls: ' + data.heroSouls +  ', Souls spent on Ancients: ' + soulsSpent + ', Total Souls: ' + totalSouls + ', Highest zone: ' + data.highestFinishedZonePersist + ', Current zone: ' + data.currentZoneHeight + ', Ascensions: ' + data.numWorldResets +  ', ';
 	miscList += miscHolder;
 	}
+	
+
 
 function onDecodeButtonClick(event){
 
@@ -101,17 +148,22 @@ function onDecodeButtonClick(event){
     if (antiCheatCodeExist) string = fromAntiCheatFormat(string);
     var jsonString = atob(string);
     var myData = JSON.parse(jsonString);
+	
 
     readAncients(myData.ancients.ancients);	
     readHeroes(myData.heroCollection.heroes);
 	readMisc(myData);
+	readTime(myData);
+	
+	
 	//Chops up output arrays in blocks up to 249 chars + a comma at the end. Always ends with comma.
     var ancientArray = ancientList.match(/.{1,249},/g);
 	var heroArray = heroList.match(/.{1,249},/g);
 	var miscArray = miscList.match(/.{1,249},/g);
+	var timeArray = timeList.match(/.{1,249},/g);
 	
 	//Adds together the arrays. More arrays can be added after heroArray with commas separating them.
-	var outputArray = ancientArray.concat(heroArray,miscArray);
+	var outputArray = ancientArray.concat(heroArray,miscArray,timeArray);
 	
     var len = outputArray.length;
 
@@ -134,7 +186,7 @@ function onDecodeButtonClick(event){
 
     }
 
-    for (i=0;i<len;i++){
+    for (i=0;i<=len+1;i++){
         outputArray.splice(i+1,0,'\n\n');
         i++;
     }
