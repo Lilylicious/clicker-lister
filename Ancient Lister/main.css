@@ -1,0 +1,23 @@
+body {
+background-image: url("img/background.png");
+color: #FFC0CB; 
+}
+
+textarea {
+background-color: #FFC0CB;
+border-radius:10px;
+opacity: 1;
+}
+
+.alignright {
+float: right;
+}
+
+.alignleft {
+float: left;
+}
+
+#floats {
+margin-right: 150px;
+min-width: 800px;
+}
