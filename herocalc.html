@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>Clicker Lister - Clicker Heroes Data Decoder</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+<div class="center">
+  <table width="100%" border="0">
+    <tr>
+      <td colspan="2" align="center" valign="middle"><p>
+
+        </p></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center" valign="middle"><p><em></em></p></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><strong>
+        <p>Input Data</p>
+        </strong></td>
+      <td align="center" valign="middle"><strong>
+        <p>Output Data</p>
+        </strong></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><span class="infotext">Paste your Clicker Heroes save into this box.</span></td>
+      <td align="center" valign="middle"><span class="infotext">Copy the text from this box into your chat window.</span></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><strong><span class="infotext">Click on the <span id="sprytrigger1" class="tooltip">spanner</span> icon at the top right ingame to export your save data to your clipboard.</strong></span></td>
+      <td align="center" valign="middle"><strong><span class="infotext">This tool automatically splits the output data into lines of 250 characters for the Kongregate chat limit.</strong></span></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><textarea id="input" cols="65" rows="40" type="text"></textarea></td>
+      <td align="center" valign="middle"><textarea id="output" cols="65" rows="40" type="text"></textarea></td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><button id="calcButton" class="button">Calculate!</button></td>
+	  <td align="center" valign="middle"><button onclick="ClearTextArea();" class="button">Clear Data!</button></td>
+    </tr>
+	<tr>
+		<td align="center" valign="middle"></td>
+	<td align="center" valign="middle">
+		<input type="radio" name="sortMode" value = "desc" checked>Descending order
+		<input type="radio" name="sortMode" value = "asc">Ascending order
+	</td>
+	
+	</tr>
+	<tr>
+	
+		<td align="center" valign="middle"></td>
+	<td align="center" valign="middle"><input type="checkbox" id="abbreviatedMode" checked>Abbreviated Mode</td>
+	
+	</tr>
+    <tr>
+      <td colspan="2" align="center" valign="middle" class="footer"><p>Coding By <a href="http://www.kongregate.com/accounts/Lilylicious">Lilylicious</a> | Page Design By <a href="http://www.kongregate.com/accounts/Deadmano">Deadmano</a> & <a href="http://www.kongregate.com/accounts/Lilylicious">Lilylicious</a> | <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> | <a href="https://github.com/Dwargkiller/clicker-lister">Source</a></p></td>
+    </tr>
+  </table>
+</div>
+<div class="tooltipContent" id="sprytooltip1"><img src="img/spanner.png"></div>
+
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script> 
+<script src="js/jquery.js"></script> 
+<script src="common/saveDecoder.js"></script> 
+<script src="common/commonvars.js"></script>
+<script src="common/datareader.js"></script>
+<script src="Hero Calculator/herocalc.js"></script>
+<script src="js/SpryTooltip.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+var sprytooltip1 = new Spry.Widget.Tooltip("sprytooltip1", "#sprytrigger1");
+
+function ClearTextArea() {
+document.getElementById("input").value='';
+document.getElementById("output").value='';
+}
+</script>
+</body>
+</html>
