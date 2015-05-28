@@ -1,3 +1,9 @@
+/*
+	==================================================
+	This file contains sorting functions. More may be
+	added at a later date for different sorting methods.
+	==================================================
+*/
 
 function sortAncients(objectArray){
 

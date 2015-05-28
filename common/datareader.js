@@ -1,12 +1,9 @@
 
-/*TODO:
-
-	- Add read functions for abbreviated..
-		heroes
-		misc
-		time
-
-	
+/*
+	==================================================
+	Contains reader functions for use in multiple files.
+	Allows for compact reading of save files in code files.
+	==================================================
 */
 
 function readData(data){

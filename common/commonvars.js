@@ -1,4 +1,10 @@
-
+/*
+	==================================================
+	This file contains variables that multiple tools
+	may want to access. Not all of them are in use,
+	at some point there'll be some cleanup done.
+	==================================================
+*/
 
 // Ancient ID's start at 3, so adding the None's make it so that we reference this array by,
 // using ID-1 (arrays start at 0) rather than ID-3.

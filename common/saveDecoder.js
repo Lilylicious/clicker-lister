@@ -1,3 +1,11 @@
+/*
+	==================================================
+	Contains the savefile decoding code. Most of it is
+	adapted from other sources. I didn't think to save
+	the source at the time, if you recognize your code
+	and want credit for it, let me know.
+	==================================================
+*/
 
 const ANTI_CHEAT_CODE = 'Fe12NAfA3R6z4k0z';
 const SALT = 'af0ik392jrmt0nsfdghy0';

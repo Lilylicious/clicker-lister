@@ -1,4 +1,14 @@
+/*
+	==================================================
+	This file calculates the Iris level needed to buy
+	a given hero with the gold gotten from one gold
+	clickable after an ascension.
+	==================================================
 
+	TODO:
+	Add navigation to the website to make people actually know about this.
+	
+*/
 
 
 

@@ -1,4 +1,11 @@
-
+/*
+	==================================================
+	Original intent was to produce a list of ancients
+	and their levels. Since then it's evolved to list
+	most(if not all) relevant info that one might want
+	to share.
+	==================================================
+*/
 
 //Misc
 var soulsSpent = 0;

@@ -1,3 +1,20 @@
+
+/*
+	==================================================
+	This file contains WIP simulations. Main purpose
+	is hero calculations, finding optimal paths. In
+	the future the simulations themselves may be moved
+	to a seperate file, leaving herocalc.js to be just
+	running the hero calculations etc.
+	==================================================
+*/
+
+
+
+
+
+
+
 /* Hero index reference
 
  0:Cid
